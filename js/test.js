@@ -1,6 +1,6 @@
 var TestComp = (function ($){
   "use strict";
-  return Vue.component('test-modal', {
+  return new Vue({
     template: '#app',
     data: function () {
       return {
