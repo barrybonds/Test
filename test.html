@@ -1,0 +1,523 @@
+
+
+
+ <!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> 
+   
+     <title>Test</title>
+  </head>
+  <body>
+    <h1>Test App</h1>
+    <!-- Button trigger modal -->
+    <a class="test-trigger btn btn-primary">
+        Launch demo modal
+    </a>
+    <script id="app" type="text/x-template"> 
+        <div :id="modalId" data-keyboard="false" data-backdrop="static" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+           <div style="width: 100% !important;height: 100% !important;" class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" id="skTest">
+              <div style="height: auto;min-height: 100%;" class="modal-content">
+                <div class="modal-header" style="background-color:#f4f4f4;">
+                <div class="w-100 text-center">
+                <img src="https://assets.investnow.ng/images/investnow-logo.png" style="width: 150px;" class="img-fluid"  alt="image" />
+            
+                   </div>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                   </button>
+                      </div>
+                  <div class="modal-body" style="padding-top:0rem;padding-bottom:0rem;background-color:#f4f4f4;">
+                  <div class="container-fluid">
+                    <div class="row pl-3">
+    
+                    <!--Start of Risk Assesment-->
+                        <div class="row" v-if="step === 1">
+                            <div class="col-md-6">
+                                <div class="row mx-auto">
+                                <img class="rounded mx-auto d-block pt-3" alt="Upload Selefie" :src="titleLogo" />
+                                <div>
+                                <h4 class="text-nowrap text-center">Take a quick assessment</h4>
+                                <p class="text-center">Please take the assesment to give us a better understanding of your investment needs </p>
+                                </div>
+                                <div class="form-row col-md-12 pt-3">
+                                    <button v-on:click="toStep(10)" type="submit" class="btn btn-danger btn-sm btn-block">
+                                        Take A Risk Assessment
+                                    </button>
+                                    <button v-on:click="showAllProductsTab" class="btn-sm btn-secondary btn-block btn-sm" style="background-color:grey" type="submit" role="button">
+                                        Skip
+                                        </button>
+    
+                                    </div>
+                                </div>
+                            </div>
+                                <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat;"  class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage2 + ')' }">
+                                <!--Image Goes Here-->
+                                    <div class="centered">
+                                    <h3> <span class="text-white">Investing Made</span> <span style="font-weight:900px" class="text-danger"><strong>Easy</strong></span></h3>
+                                    <p class="font-weight-bold"> InvestNow enables you have complete control of your Investment portfolio.</p>
+                                </div>
+                            </div>
+                        </div>
+                    <!--End of Risk Assesment-->
+    
+                    <!---Start of Terms of Service-->
+                    <div class="row" v-if="step === 10">
+                        <div class="col-md-6">
+    
+                            <div style="padding-top:0rem" class="row">
+                                <h4 style="padding-top:0rem" class="text-center mx-auto">Terms and Conditions</h4>
+                                <div data-spy="scroll">
+                                    <p style="font-size:12px" class="text-justify mb-10 pr-4">
+                                        1.	This risk assessment form has been made available for informational purposes only. Nothing contained on this form and/or this site should be used or construed as an offer to sell, a solicitation of an offer to buy, or a recommendation for any security, nor is it intended as investment, tax, financial or legal advice. Therefore, before making any investment decision, you should seek professional financial advice taking into consideration your financial situation, investment objectives and experience, risk tolerance and ability to understand the nature and risks of the relevant products.
+                                    </p>
+                                    <p style="font-size:12px" class="text-justify mb-10 pr-4">
+                                    2.	United Capital Asset Management Limited, its affiliates, their directors, officers and employees (“United Capital”) make no warranties as to the accuracy, timeliness, suitability or completeness of the risk assessment and/or the other materials provided on this site, either expressly or impliedly, and expressly disclaim any warranties of merchantability or fitness for a particular purpose.
+                                                        </p>
+                                                        <p style="font-size:12px" class="text-justify mb-10 pr-4">
+                                    3.	Consequently, United Capital shall not be liable or have any responsibility for any loss or damage that may be incurred as a result of your use and/or reliance on this risk assessment, or any failure or interruptions of this site, or resulting from the act or omission of any third party involved in making this site or the data contained on this site available, or from any other cause relating to your access to, inability to access, or use of the site.
+                                                        </p>
+                                                            <p style="font-size:12px" class="text-justify mb-10 pr-4">
+                                    4.	You agree that any decision made by you, based on information contained on this risk assessment and/or this site, is your sole responsibility. In exchange for using this site, you agree to indemnify and hold United Capital harmless against any claims relating to or arising from any decision you make based on such information and generally from your use of this site.
+                                                        </p>
+                                    <p style="font-size:12px" class="text-justify mb-10 pr-4">
+                                    5.	We reserve the right to withdraw or prohibit access to the site, and to revise the software, materials, information and the services and products described in this site, at any time without prior notice to you.
+                                    </p>
+                                </div>
+                            </div>
+    
+                            <div class="row pr-2 pb-2">
+                                <button v-on:click.once="close" class="btn btn-secondary btn-block btn-sm" style="background-color:grey" type="submit" role="button">Decline</button>
+                                <button v-on:click.once="toStep(2)" type="submit" class="btn btn-danger btn-block btn-sm">Accept</button>
+                            </div>
+    
+                        </div>
+                        <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat;" class="col-md-6" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                            <!--Image Goes Here-->
+    
+                        </div>
+                    </div>
+                    <!---End of Terms of Service-->
+    
+                    <!--Start of Question 1 -->
+                    <div class="row" v-if="step === 2">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <h4>Risk Assessment</h4>
+                                    <div class="alert alert-warning" role="alert">
+                                    This is <strong>{{step-1}}</strong> of 5 questions on this assesment
+                                </div>
+                                <p>{{questionOne}}</p>
+    
+                                <ol class="col-md-12">
+                                    <li>
+                                        <div class="form-row">
+    
+                                        <a @click.stop.prevent.once="addPointToArray(1)" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">1.</span>  None
+                                        </a>
+                                    </div>
+                                    </li>
+    
+                                    <li>
+                                    <div class="form-row pt-3">
+                                        <a @click.stop.prevent.once="addPointToArray(3)" type="button" class="btn btn-sm btn-light col-md-12">
+                                                <span class="pull-left">2.</span>  Limited
+                                        </a>
+                                    </div>
+                                </li>
+    
+                                <li>
+                                    <div class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray(7)" type="button" class="btn btn-sm btn-light col-md-12">
+                                        <span class="pull-left">3.</span>   Good
+                                    </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                    <div class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray(10)" type="button" class="btn btn-sm btn-light col-md-12">
+                                        <span class="pull-left">4.</span>  Extensive
+                                    </a>
+                                    </div>
+                                </li>
+                                </ol>
+    
+                            </div>
+                        </div>
+                            <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat" class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                                <!--Image Goes Here-->
+    
+                            </div>
+                    </div>
+                    <!--End of Question 1 -->
+    
+    
+                    <!--Start of Question 2-->
+                    <div class="row" v-if="step === 3">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <h4>Risk Assessment</h4>
+                            <div class="alert alert-warning" role="alert">
+                                    This is <strong>{{step-1}}</strong> of 5 questions on this assesment
+                                </div>
+                                <p>{{questionTwo}}</p>
+                                    <ol class="col-md-12">
+                                <li>
+                                    <div class="form-row">
+                                        <a @click.stop.prevent.once="addPointToArray(1)" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">1.</span>Less than 3 months
+                                        </a>
+                                    </div>
+                                </li>
+    
+                                <li>
+                                <div class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray()" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">2.</span>3-12 months
+                                    </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                <div class="form-row pt-3">
+                                <a @click.stop.prevent.once="addPointToArray(4)" type="button" class="btn btn-sm btn-light col-md-12">
+                                    <span class="pull-left">3.</span>2-3 years
+                                </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                <div class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray(8)" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">4.</span>  Over 5 years
+                                    </a>
+                                </div>
+                                </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat" class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                                <!--Image Goes Here-->
+    
+                            </div>
+                    </div>
+                    <!--End of Question 2-->
+    
+    
+                    <!--Start of Question 3-->
+                    <div class="row" v-if="step === 4">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <h4>Risk Assessment</h4>
+                            <div class="alert alert-warning" role="alert">
+                                This is <strong>{{step-1}}</strong> of 5 questions on this assesment
+                            </div>
+                            <p>{{questionThree}}</p>
+                            <ol class="col-md-12">
+                            <li>
+                                <div class="form-row">
+                            <a @click.stop.prevent.once="addPointToArray(2)" type="button" class="btn btn-sm btn-light col-md-12">
+                                <span class="pull-left">1.</span>   None (All my money is in my bank)
+                            </a>
+                            </div>
+                            </li>
+    
+                            <li>
+                            <div class="form-row pt-3">
+                            <a @click.stop.prevent.once="addPointToArray(3)" type="button" class="btn btn-sm btn-light col-md-12">
+                                    <span class="pull-left">2.</span>  Treasury Bills
+                            </a>
+                            </div>
+                            </li>
+    
+                                <li>
+                            <div class="form-row pt-3">
+                            <a @click.stop.prevent.once="addPointToArray(4)" type="button" class="btn btn-sm btn-light col-md-12">
+                                <span class="pull-left">3.</span>   Fixed Deposit
+                            </a>
+                            </div>
+                            </li>
+                            <li>
+                            <div class="form-row pt-3">
+                            <a @click.stop.prevent.once="addPointToArray(6)" type="button" class="btn btn-sm btn-light col-md-12">
+                                <span class="pull-left">4.</span>    Real Estate
+                            </a>
+                            </div>
+                            </li>
+                            <li>
+                            <div class="form-row pt-3">
+                            <a @click.stop.prevent.once="addPointToArray(8)" type="button" class="btn btn-sm btn-light col-md-12">
+                                <span class="pull-left">5.</span>    Shares
+                            </a>
+                            </div>
+                            </li>
+                            </ol>
+                            </div>
+                        </div>
+                        <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat" class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                                <!--Image Goes Here-->
+    
+                            </div>
+                    </div>
+                    <!--End of Question 3-->
+    
+    
+                    <!--Start of Question 4-->
+                    <div class="row" v-if="step === 5">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <h4>Risk Assessment</h4>
+                            <div class="alert alert-warning" role="alert">
+                                    This is <strong>{{step-1}}</strong> of 5 questions on this assesment
+                                </div>
+                                <p>
+                                        {{questionFour}}
+                                </p>
+    
+                                <ol class="col-md-12">
+                                <li>
+                                <div class="form-row">
+                                <a @click.stop.prevent.once="addPointToArray(0)" type="button" class="btn btn-sm btn-light col-md-12">
+                                        <span class="pull-left">1.</span>  Sell all my investments
+                                </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                <div class="form-row pt-3">
+                                <a @click.stop.prevent.once="addPointToArray(2)" type="button" class="btn btn-sm btn-light col-md-12">
+                                        <span class="pull-left">2.</span>  Sell some of my investments
+                                </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                <div class="form-row pt-3">
+                                <a @click.stop.prevent.once="addPointToArray(5)" type="button" class="btn btn-sm btn-light col-md-12">
+                                        <span class="pull-left">3.</span>  Do nothing
+                                </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                <div class="form-row pt-3">
+                                <a @click.stop.prevent.once="addPointToArray(8)" type="button" class="btn btn-sm btn-light col-md-12">
+                                        <span class="pull-left">4.</span>  Buy more because the prices would be low
+                                </a>
+                                </div>
+                                </li>
+    
+                                </ol>
+    
+    
+                            </div>
+                        </div>
+                        <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat" class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                                <!--Image Goes Here-->
+    
+                            </div>
+                    </div>
+                    <!--End of Question 4-->
+    
+    
+                    <!--Start of Question 5-->
+                    <div class="row" v-if="step === 6">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <h4>Risk Assessment</h4>
+                                <div class="alert alert-warning" role="alert">
+                                    This is <strong>{{step-1}}</strong> of 5 questions on this assesment
+                                </div>
+                                <p>
+                                    Assume you are offered 3 investment plans with 3 possible
+                                    scenarios of gains and losses
+                                </p>
+    
+                                <ol class="col-md-12">
+                                <li>
+                                <div class="form-row">
+    
+                                        <a @click.stop.prevent.once="addPointToArray(10)" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">1.</span>  Average gain : 7% <br />
+                                        Loss in a bad year: 16%  <br />
+                                        Gain in a good year: 6%  <br />
+                                    </a>
+                                </div>
+                                </li>
+                                <li>
+                                <div class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray(3)" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">2.</span>  Average gain : 9% <br />
+                                        Loss in a bad year: 20%  <br />
+                                        Gain in a good year: 12%  <br />
+                                    </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                <div  class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray(6)" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">3.</span>  Average gain : 11%  <br />
+                                        Loss in a bad year: 30%  <br />
+                                        Gain in a good year: 18%  <br />
+                                    </a>
+                                </div>
+                                </li>
+    
+                                <li>
+                                <div class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray(8)" type="button" class="btn btn-sm btn-light col-md-12">
+                                        <span class="pull-left">4.</span>  Average gain : 12%  <br />
+                                        Loss in a bad year: 40%  <br />
+                                        Gain in a good year: 24%  <br />
+                                    </a>
+                                </div>
+                                </li>
+                                <li>
+                                <div class="form-row pt-3">
+                                    <a @click.stop.prevent.once="addPointToArray(10)" type="button" class="btn btn-sm btn-light col-md-12">
+                                            <span class="pull-left">5.</span>   Average gain : 15%  <br />
+                                        Loss in a bad year: 50%  <br />
+                                        Gain in a good year: 28%  <br />
+                                    </a>
+                                </div>
+                                </li>
+                                </ol>
+                            @*<div class="form-row col-md-12 pt-3">
+                                    <button v-on:click="getRecommendedProducts" type="submit" class="btn btn-danger btn-sm btn-block">
+                                        Submit Assesment
+                                    </button>
+                                </div>*@
+                            </div>
+                        </div>
+                            <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat" class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                                <!--Image Goes Here-->
+    
+                            </div>
+                    </div>
+                    <!--End of Question 5-->
+    
+    
+                    <!--Start of Product Listing -->
+               <div class="row" v-if="step === 7">
+                   <div class="col-md-6">
+                       <div class="row">
+    
+                               <ul class="nav nav-pills mb-3 pt-3" id="pills-tab" role="tablist">
+                                 <li class="nav-item" role="presentation">
+                                   <a class="nav-link active prodmenu" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Recommended</a>
+                                 </li>
+                                 <li class="nav-item" role="presentation">
+                                   <a class="nav-link prodmenu" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">All Products</a>
+                                 </li>
+    
+                               </ul>
+                               <div class="tab-content" id="pills-tabContent">
+                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                     <div v-for="rec in recommendedProducts">
+                                           <div class="card" style="width: 22rem;">
+                                               <div class="card-body" @click="showDetails(rec,8)">
+                                               <h5 class="card-title font-weight-bold">{{rec.name}}</h5>
+                                               <hr/>
+    
+                                               <div class="row">
+                                                   <div class="col">
+                                                       <p class="font-weight-bold" style="color:grey;font-size:10px">Start with a minimum of &#8358 {{rec.minimumAmount  }}</p>
+                                                   </div>
+                                                   <div class="col">
+                                               <p class="font-weight-bold" style="color:grey;font-size:10px">Holding Period: {{rec.holdingPeriod }}</p>
+    
+                                                   </div>
+                                               </div>
+                                               <hr/>
+                                          <button  @click="showDetails(rec,8)" type="button" class="btn btn-secondary btn-sm pull-right">Read More</button>
+    
+                                         </div>
+                                       </div>
+                                   </div>
+                                 </div>
+                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                     <div v-for="(rec, index) in allProducts" :key="index">
+                                               <div class="card" style="width: 22rem;">
+                                                   <div class="card-body">
+                                                   <h5 class="card-title font-weight-bold mt-0">{{rec.name}}</h5>
+                                                   <hr/>
+    
+                                                   <div class="row mt-0">
+                                                       <div class="col">
+                                                           <p class="font-weight-bold" style="color:grey;font-size:10px">Start with a minimum of &#8358 {{rec.minimumAmount }}</p>
+                                                       </div>
+                                                       <div class="col">
+                                                   <p class="font-weight-bold" style="color:grey;font-size:10px">Holding Period: {{rec.holdingPeriod }}</p>
+    
+                                                       </div>
+                                                   </div>
+                                           <hr/>
+                                                   @*<a href="#" class="card-link pull-right">Read More</a>*@
+                                                   <button  @click="showDetails(rec,8)" type="button" class="btn btn-secondary btn-sm pull-right">Read More</button>
+                                             </div>
+                                           </div>
+                                       </div>
+                                 </div>
+    
+                               </div>
+    
+                       </div>
+                   </div>
+                    <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat" class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                           <!--Image Goes Here-->
+    
+                   </div>
+               </div>
+               <!--End of Product Listings-->
+    
+           <!--Start of Product Details -->
+           <div class="row" v-if="step === 8">
+           <div class="col-md-6">
+           <div class="row">
+               <div class="row pl-4">
+    
+                   <h5>{{productsDetails.name}}</h5>
+               
+                   <p class="text-justify mr-5" v-html="productsDetails.introHtml"></p>
+    
+                   <button @click="showRegistrationModal(productsDetails.code)" class="btn btn-secondary float-right"  type="submit" role="button">
+                   Let's Invest
+                   </button>
+                   </div>
+                     <div class="form-row col-md-12 pt-3">
+    
+                        </div>
+                      </div>
+                     </div>
+                     <div style="padding-top:0rem;padding-bottom:0rem;width:450px;height:750px;background-repeat:no-repeat" class="col-md-6 centerimagetext" :style="{ backgroundImage: 'url(' + halfPageStartImage + ')' }">
+                       <!--Image Goes Here-->
+                    </div>
+    
+                    </div>
+    
+                    </div>
+                <!--End of Product Details-->
+                  </div>
+               </div>
+             </div>
+           </div>
+           </div>
+     </script> 
+    
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script src="js/vue.js"></script>
+  <script src="js/start.js"></script>
+  <script src="js/test.js"></script>  
+</body>
+</html>

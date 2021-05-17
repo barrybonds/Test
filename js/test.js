@@ -5,7 +5,10 @@ var TestComp = (function ($){
     data: function () {
       return {
         count: 0,
-        compId:null
+        compId:null,
+        recommendationPoints:[],
+        step: 1,
+        totalSum:0
       }
     },
     
@@ -16,9 +19,25 @@ var TestComp = (function ($){
     },
   
     methods:{
+
+      next(){
+        this.step++
+      },
+
+      toStep: function (stepNum) {
+        this.step = stepNum;
+       
+    },
+
       addPointToArray(p) {
         this.recommendationPoints.push(p);
+
         console.log(this.recommendationPoints)
+        this.next();
+      },
+      sumUp(){
+        console.log(this.recommendationPoints.reduce((a,b) => a + b, 0))
+        this.totalSum = this.recommendationPoints.reduce((a,b) => a + b, 0);
       }
   
     },
